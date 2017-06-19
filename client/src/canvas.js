@@ -2,17 +2,22 @@ const THREE = require('../js/three');
 
 class Canvas {
   constructor(canvas) {
-    this.canvas = canvas;
-    this.camera = this.CreateCamera();
+    this.renderer = new THREE.WebGLRenderer();
     this.scene = new THREE.Scene();
+    this.camera = this.CreateCamera();
+
+    this.canvas = canvas;
+    this.Animate = () => {};
 
     this.CreateCanvas();
+    this.CreateRenderLoop();
   }
 
+  RenderLoop() {}
+
   CreateCanvas(canvas) {
-    const renderer = new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    this.canvas.appendChild(renderer.domElement);
+    this.renderer.setSize(window.innerWidth, window.innerHeight);
+    this.canvas.appendChild(this.renderer.domElement);
   }
 
   CreateCamera() {
@@ -24,6 +29,15 @@ class Canvas {
     const camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, nearClippingPlane, farClippingPlane);
 
     return (camera);
+  }
+
+  CreateRenderLoop() {
+    const render = () => {
+      requestAnimationFrame(render);
+      this.Animate();
+      this.renderer.render(this.scene, this.camera);
+    };
+    render();
   }
 
 }
