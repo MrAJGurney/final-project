@@ -26,6 +26,7 @@ function app() {
         y: 0
       };
       let angle = 0;
+      let maxDimension = 0;
 
       for (let character of code) {
         switch (character) {
@@ -43,6 +44,8 @@ function app() {
               x: startCoord.x + newDirection.x,
               y: startCoord.y + newDirection.y
             };
+            maxDimension = Math.max(endCoord.x, (endCoord.y * 2), maxDimension);
+
             lines.push({start: startCoord, end: endCoord});
             startCoord = endCoord;
             break;
@@ -61,18 +64,22 @@ function app() {
         }
       }
 
-      return lines;
+      return {maxDimension: maxDimension, lines: lines};
     }
   });
 
   [...Array(5)].forEach(() => {
     fractalBinaryTree.GenerateCode()
   });
-  fractalBinaryTree.ProcessCode().forEach((line) => {
+  fractalBinaryTree.ProcessCode()
+
+  fractalBinaryTree.lines.forEach((line) => {
     let lineStart = new THREE.Vector3(0, line.start.x, line.start.y);
     let lineEnd = new THREE.Vector3(0, line.end.x, line.end.y);
     canvas.AddShape(Shape.line(lineStart, lineEnd));
   });
+
+  console.log(fractalBinaryTree.maxDimension);
 }
 
 window.onload = function() {

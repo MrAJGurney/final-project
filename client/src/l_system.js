@@ -10,6 +10,8 @@ class LindenmayerSystem {
       processing: system.processing
     }
     this.code = this.system.axiom;
+    this.lines = null;
+    this.maxDimension = null;
   }
 
   GenerateCode() {
@@ -27,7 +29,9 @@ class LindenmayerSystem {
   }
 
   ProcessCode() {
-    return this.system.processing(this.code);
+    const generatedObject = this.system.processing(this.code);
+    this.lines = generatedObject.lines;
+    this.maxDimension = generatedObject.maxDimension;
   }
 
 }
