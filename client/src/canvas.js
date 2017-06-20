@@ -4,7 +4,10 @@ class Canvas {
   constructor(canvas) {
     this.renderer = new THREE.WebGLRenderer();
     this.scene = new THREE.Scene();
-    this.camera = this.CreateCamera();
+
+    this.modelHeight = 0;
+    this.camera = null;
+    this.CreateCamera();
 
     this.canvas = canvas;
     this.Animate = () => {};
@@ -24,26 +27,31 @@ class Canvas {
     let fieldOfView = 75;
     let aspectRatio = window.innerWidth / window.innerHeight;
     let nearClippingPlane = 0.1;
-    let farClippingPlane = 1000;
+    let farClippingPlane = 2000;
 
     const camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, nearClippingPlane, farClippingPlane);
 
-    camera.position.set(20, 15, 0);
-    camera.lookAt(new THREE.Vector3(0, 15, 0));
+    camera.position.set(0, 0, this.modelHeight);
 
-    return (camera);
+    this.camera = camera;
   }
 
   CreateRenderLoop() {
+    let firstRender = true;
     const render = () => {
       requestAnimationFrame(render);
-      // this.shapes.forEach((shape) => {
-      //   shape.animation()
-      // });
+      this.shapes.forEach((shape) => {
+        shape.animation()
+      });
       const axis = new THREE.Vector3(0, 1, 0);
       const angle = Math.PI / 512;
+
       this.camera.position.applyAxisAngle(axis, angle);
-      this.camera.lookAt(new THREE.Vector3(0, 15, 0));
+
+      this.camera.position.y = this.modelHeight / 2;
+
+      this.camera.lookAt(new THREE.Vector3(0, this.camera.position.y, 0));
+
       this.renderer.render(this.scene, this.camera);
     };
     render();
