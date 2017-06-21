@@ -18,6 +18,7 @@ class Canvas {
 
     this.center = null;
     this.zoom = null;
+    this.tutorialMode = true;
   }
 
   CreateCanvas(canvas) {
@@ -46,19 +47,21 @@ class Canvas {
     let firstRender = true;
     const render = () => {
       requestAnimationFrame(render);
-      this.shapes.forEach((shape) => {
-        shape.animation()
-      });
-
-      if (this.center !== null && this.center !== undefined) {
-        const axis = new THREE.Vector3(0, 1, 0);
-        const angle = Math.PI / 512;
-
-        this.camera.position.applyAxisAngle(axis, angle);
-        this.camera.lookAt(new THREE.Vector3(0, this.center.y, this.center.x));
+      if (!this.tutorialMode) {
+        this.shapes.forEach((shape) => {
+          shape.animation()
+        });
       }
 
-      // this.camera.position.y = this.modelHeight / 2;
+      if (this.center !== null && this.center !== undefined) {
+        if (!this.tutorialMode) {
+
+          const axis = new THREE.Vector3(0, 1, 0);
+          const angle = Math.PI / 512;
+          this.camera.position.applyAxisAngle(axis, angle);
+          this.camera.lookAt(new THREE.Vector3(0, this.center.y, this.center.x));
+        }
+      }
 
       this.renderer.render(this.scene, this.camera);
     };

@@ -11,13 +11,13 @@ class Shape {
     return {
       shape: cube,
       animation: () => {
-        let size = -0.01;
-        cube.material.color.offsetHSL(size, 0, 0);
+        // let size = -0.01;
+        // cube.material.color.offsetHSL(size, 0, 0);
       }
     };
   }
 
-  static line(start, end, node) {
+  static line(start, end, node, tutorialMode) {
     var material = new THREE.LineBasicMaterial();
     material.color.setHSL((node % 400) / 400, 1, 0.5);
 
@@ -26,7 +26,7 @@ class Shape {
     geometry.vertices.push(end);
     var line = new THREE.Line(geometry, material);
 
-    // line.visible = (Math.random() >= 0.5);
+    line.visible = !tutorialMode;
     return {
       shape: line,
       animation: () => {

@@ -15,17 +15,23 @@ function app() {
   /* = = = = = = = = OPTIONS = = = = = = = = */
   /* = = = = = = = = = = = = = = = = = = = = */
 
-  const modelType = 'FRACTAL_PLANT';
+  // const modelType = 'FRACTAL_PLANT';
   // const modelType = 'FRACTAL_BINARY_TREE';
-  // const modelType = 'DRAGON_CURVE';
+  const modelType = 'DRAGON_CURVE';
 
-  const generations = 6;
+  const generations = 11;
 
-  // const untestedFeature = true;
+  let tutorialMode = false;
+  const delay = 1;
 
   /* = = = = = = = = = = = = = = = = = = = = */
   /* = = = = = = = = OPTIONS = = = = = = = = */
   /* = = = = = = = = = = = = = = = = = = = = */
+
+  console.log("Model:", modelType);
+  console.log("Generations:", generations);
+  console.log("Tutorial Active:", tutorialMode);
+  console.log("Delay:", delay);
 
   const renderShape = new LindenmayerSystem(MODELS[modelType]);
 
@@ -38,8 +44,30 @@ function app() {
     let lineStart = new THREE.Vector3(0, line.start.x, line.start.y);
     let lineEnd = new THREE.Vector3(0, line.end.x, line.end.y);
     let node = line.node;
-    canvas.AddShape(Shape.line(lineStart, lineEnd, node));
+    canvas.AddShape(Shape.line(lineStart, lineEnd, node, tutorialMode));
   });
+
+  canvas.tutorialMode = tutorialMode;
+
+  if (tutorialMode) {
+    let buttonPressed = false;
+    let index = 1; // 0 is the box
+    const displayShapes = () => {
+      if (index < canvas.shapes.length) {
+        canvas.shapes[index].shape.visible = true;
+        index++;
+        setTimeout(displayShapes, delay);
+      } else {
+        console.log("Displayed all", index, "segments");
+      }
+    };
+    document.onkeydown = () => {
+      if (!buttonPressed) {
+        buttonPressed = true;
+        displayShapes(1);
+      }
+    }
+  }
 
   canvas.center = {
     x: (renderShape.dimensions.maxNorth - renderShape.dimensions.maxSouth) / 2 + renderShape.dimensions.maxSouth,
