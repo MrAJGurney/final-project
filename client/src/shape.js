@@ -4,7 +4,7 @@ class Shape {
 
   static cube() {
     var material = new THREE.MeshBasicMaterial();
-    material.color.setHSL(0, 1, 0.5);
+    material.color.setHSL(0.5, 1, 0.5);
     var geometry = new THREE.BoxGeometry(1, 1, 1);
     var cube = new THREE.Mesh(geometry, material);
     cube.position.set(0, -0.5, 0);

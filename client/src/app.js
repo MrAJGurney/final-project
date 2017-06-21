@@ -11,8 +11,23 @@ function app() {
   const cube = Shape.cube();
   canvas.AddShape(cube);
 
-  const renderShape = new LindenmayerSystem(MODELS.DRAGON_CURVE);
-  const generations = 8;
+  /* = = = = = = = = = = = = = = = = = = = = */
+  /* = = = = = = = = OPTIONS = = = = = = = = */
+  /* = = = = = = = = = = = = = = = = = = = = */
+
+  const modelType = 'FRACTAL_PLANT';
+  // const modelType = 'FRACTAL_BINARY_TREE';
+  // const modelType = 'DRAGON_CURVE';
+
+  const generations = 6;
+
+  // const untestedFeature = true;
+
+  /* = = = = = = = = = = = = = = = = = = = = */
+  /* = = = = = = = = OPTIONS = = = = = = = = */
+  /* = = = = = = = = = = = = = = = = = = = = */
+
+  const renderShape = new LindenmayerSystem(MODELS[modelType]);
 
   [...Array(generations)].forEach(() => {
     renderShape.GenerateCode()
