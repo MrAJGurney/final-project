@@ -11,7 +11,12 @@ class LindenmayerSystem {
     }
     this.code = this.system.axiom;
     this.lines = null;
-    this.maxDimension = null;
+    this.dimensions = {
+      maxNorth: 0,
+      maxEast: 0,
+      maxSouth: 0,
+      maxWest: 0
+    };
   }
 
   GenerateCode() {
@@ -31,7 +36,7 @@ class LindenmayerSystem {
   ProcessCode() {
     const generatedObject = this.system.processing(this.code);
     this.lines = generatedObject.lines;
-    this.maxDimension = generatedObject.maxDimension;
+    this.dimensions = generatedObject.dimensions;
   }
 
 }

@@ -15,8 +15,13 @@ const DRAGON_CURVE = {
       y: 0
     };
     let angle = 90;
-    let maxDimension = 0;
     let node = 0;
+    let dimensions = {
+      maxNorth: 0,
+      maxEast: 0,
+      maxSouth: 0,
+      maxWest: 0
+    };
 
     for (let character of code) {
       switch (character) {
@@ -33,7 +38,11 @@ const DRAGON_CURVE = {
             x: startCoord.x + newDirection.x,
             y: startCoord.y + newDirection.y
           };
-          maxDimension = Math.max(endCoord.x, (endCoord.y * 2), maxDimension);
+
+          dimensions.maxNorth = Math.max(dimensions.maxNorth, endCoord.y);
+          dimensions.maxEast = Math.max(dimensions.maxEast, endCoord.x);
+          dimensions.maxSouth = Math.min(dimensions.maxSouth, endCoord.y);
+          dimensions.maxWest = Math.min(dimensions.maxWest, endCoord.x);
 
           lines.push({start: startCoord, end: endCoord, node: node});
           startCoord = endCoord;
@@ -57,7 +66,7 @@ const DRAGON_CURVE = {
       }
     }
 
-    return {maxDimension: maxDimension, lines: lines};
+    return {dimensions: dimensions, lines: lines};
   }
 }
 

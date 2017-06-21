@@ -5,7 +5,6 @@ class Canvas {
     this.renderer = new THREE.WebGLRenderer();
     this.scene = new THREE.Scene();
 
-    this.modelHeight = 0;
     this.camera = null;
     this.CreateCamera();
 
@@ -16,6 +15,9 @@ class Canvas {
 
     this.CreateCanvas();
     this.CreateRenderLoop();
+
+    this.center = null;
+    this.zoom = null;
   }
 
   CreateCanvas(canvas) {
@@ -31,7 +33,11 @@ class Canvas {
 
     const camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, nearClippingPlane, farClippingPlane);
 
-    camera.position.set(0, 0, this.modelHeight);
+    if (this.center !== undefined && this.zoom !== undefined) {
+      camera.position.set(this.zoom, this.center.y, this.center.x);
+
+      camera.lookAt(new THREE.Vector3(0, this.center.y, this.center.x));
+    }
 
     this.camera = camera;
   }
@@ -43,14 +49,16 @@ class Canvas {
       this.shapes.forEach((shape) => {
         shape.animation()
       });
-      const axis = new THREE.Vector3(0, 1, 0);
-      const angle = Math.PI / 512;
 
-      this.camera.position.applyAxisAngle(axis, angle);
+      if (this.center !== null && this.center !== undefined) {
+        const axis = new THREE.Vector3(0, 1, 0);
+        const angle = Math.PI / 512;
 
-      this.camera.position.y = this.modelHeight / 2;
+        this.camera.position.applyAxisAngle(axis, angle);
+        this.camera.lookAt(new THREE.Vector3(0, this.center.y, this.center.x));
+      }
 
-      this.camera.lookAt(new THREE.Vector3(0, this.camera.position.y, 0));
+      // this.camera.position.y = this.modelHeight / 2;
 
       this.renderer.render(this.scene, this.camera);
     };

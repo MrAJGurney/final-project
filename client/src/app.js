@@ -11,8 +11,8 @@ function app() {
   const cube = Shape.cube();
   canvas.AddShape(cube);
 
-  const renderShape = new LindenmayerSystem(MODELS.FRACTAL_PLANT);
-  const generations = 6;
+  const renderShape = new LindenmayerSystem(MODELS.DRAGON_CURVE);
+  const generations = 8;
 
   [...Array(generations)].forEach(() => {
     renderShape.GenerateCode()
@@ -27,7 +27,13 @@ function app() {
     canvas.AddShape(Shape.line(lineStart, lineEnd, node));
   });
 
-  canvas.modelHeight = renderShape.maxDimension;
+  canvas.center = {
+    x: (renderShape.dimensions.maxNorth - renderShape.dimensions.maxSouth) / 2 + renderShape.dimensions.maxSouth,
+    y: (renderShape.dimensions.maxEast - renderShape.dimensions.maxWest) / 2 + renderShape.dimensions.maxWest
+  };
+
+  canvas.zoom = Math.max(renderShape.dimensions.maxNorth - renderShape.dimensions.maxSouth, renderShape.dimensions.maxEast - renderShape.dimensions.maxWest) * (3 / 4);
+
   canvas.CreateCamera();
 }
 
