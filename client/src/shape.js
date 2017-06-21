@@ -19,7 +19,7 @@ class Shape {
 
   static line(start, end, node, tutorialMode) {
     var material = new THREE.LineBasicMaterial();
-    material.color.setHSL((node % 400) / 400, 1, 0.5);
+    material.color.setHSL((node % 500) / 500, 1, 0.6);
 
     var geometry = new THREE.Geometry();
     geometry.vertices.push(start);

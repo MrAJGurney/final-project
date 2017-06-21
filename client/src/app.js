@@ -19,19 +19,18 @@ function app() {
   // const modelType = 'FRACTAL_BINARY_TREE';
   const modelType = 'DRAGON_CURVE';
 
-  const generations = 11;
+  const generations = 12;
 
-  let tutorialMode = false;
-  const delay = 1;
+  const rotationEnabled = false
+
+  const tutorialMode = false;
+  const delay = 0;
+
+  const displayCode = false;
 
   /* = = = = = = = = = = = = = = = = = = = = */
   /* = = = = = = = = OPTIONS = = = = = = = = */
   /* = = = = = = = = = = = = = = = = = = = = */
-
-  console.log("Model:", modelType);
-  console.log("Generations:", generations);
-  console.log("Tutorial Active:", tutorialMode);
-  console.log("Delay:", delay);
 
   const renderShape = new LindenmayerSystem(MODELS[modelType]);
 
@@ -48,6 +47,7 @@ function app() {
   });
 
   canvas.tutorialMode = tutorialMode;
+  canvas.rotate = rotationEnabled;
 
   if (tutorialMode) {
     let buttonPressed = false;
@@ -74,9 +74,20 @@ function app() {
     y: (renderShape.dimensions.maxEast - renderShape.dimensions.maxWest) / 2 + renderShape.dimensions.maxWest
   };
 
-  canvas.zoom = Math.max(renderShape.dimensions.maxNorth - renderShape.dimensions.maxSouth, renderShape.dimensions.maxEast - renderShape.dimensions.maxWest) * (3 / 4);
+  canvas.zoom = Math.max(renderShape.dimensions.maxNorth - renderShape.dimensions.maxSouth, renderShape.dimensions.maxEast - renderShape.dimensions.maxWest) * (5 / 7);
 
   canvas.CreateCamera();
+
+  console.log("Model:", modelType);
+  console.log("Gens:", generations);
+  console.log("Rotation:", rotationEnabled);
+  console.log("Step-through:", tutorialMode);
+  console.log("Delay:", delay);
+  console.log("No. of chars", renderShape.code.length);
+  console.log("No. of lines:", renderShape.lines.length);
+  if (displayCode) {
+    console.log(renderShape.code.join(''));
+  }
 }
 
 window.onload = function() {

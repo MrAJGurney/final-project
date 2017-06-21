@@ -19,6 +19,7 @@ class Canvas {
     this.center = null;
     this.zoom = null;
     this.tutorialMode = true;
+    this.rotate = false;
   }
 
   CreateCanvas(canvas) {
@@ -54,7 +55,7 @@ class Canvas {
       }
 
       if (this.center !== null && this.center !== undefined) {
-        if (!this.tutorialMode) {
+        if (this.rotate) {
 
           const axis = new THREE.Vector3(0, 1, 0);
           const angle = Math.PI / 512;
