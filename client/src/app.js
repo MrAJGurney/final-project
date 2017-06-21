@@ -23,7 +23,6 @@ function app() {
     let lineStart = new THREE.Vector3(0, line.start.x, line.start.y);
     let lineEnd = new THREE.Vector3(0, line.end.x, line.end.y);
     let node = line.node;
-    // console.log(node);
     canvas.AddShape(Shape.line(lineStart, lineEnd, node));
   });
 
