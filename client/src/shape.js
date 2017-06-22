@@ -11,8 +11,8 @@ class Shape {
     return {
       shape: cube,
       animation: () => {
-        // let size = -0.01;
-        // cube.material.color.offsetHSL(size, 0, 0);
+        let size = -0.01;
+        cube.material.color.offsetHSL(size, 0, 0);
       }
     };
   }

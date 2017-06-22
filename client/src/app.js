@@ -15,18 +15,17 @@ function app() {
   /* = = = = = = = = OPTIONS = = = = = = = = */
   /* = = = = = = = = = = = = = = = = = = = = */
 
+  const modelType = 'FRACTAL_BINARY_TREE';
   // const modelType = 'FRACTAL_PLANT';
-  // const modelType = 'FRACTAL_BINARY_TREE';
-  const modelType = 'DRAGON_CURVE';
+  // const modelType = 'DRAGON_CURVE';
 
-  const generations = 12;
+  const generations = 0;
 
   const rotationEnabled = false
 
-  const tutorialMode = false;
-  const delay = 0;
+  const tutorialMode = true;
 
-  const displayCode = false;
+  const displayCode = true;
 
   /* = = = = = = = = = = = = = = = = = = = = */
   /* = = = = = = = = OPTIONS = = = = = = = = */
@@ -48,6 +47,8 @@ function app() {
 
   canvas.tutorialMode = tutorialMode;
   canvas.rotate = rotationEnabled;
+
+  const delay = Math.ceil(10000 / renderShape.lines.length);
 
   if (tutorialMode) {
     let buttonPressed = false;
@@ -78,6 +79,14 @@ function app() {
 
   canvas.CreateCamera();
 
+  if (displayCode) {
+    console.log('|=CODE START=|');
+    console.log(renderShape.code.join(''));
+    console.log('|=CODE END=|');
+    console.log('');
+    console.log('');
+    console.log('');
+  }
   console.log("Model:", modelType);
   console.log("Gens:", generations);
   console.log("Rotation:", rotationEnabled);
@@ -85,9 +94,6 @@ function app() {
   console.log("Delay:", delay);
   console.log("No. of chars", renderShape.code.length);
   console.log("No. of lines:", renderShape.lines.length);
-  if (displayCode) {
-    console.log(renderShape.code.join(''));
-  }
 }
 
 window.onload = function() {

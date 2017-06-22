@@ -36,7 +36,7 @@ class Canvas {
     const camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, nearClippingPlane, farClippingPlane);
 
     if (this.center !== undefined && this.zoom !== undefined) {
-      camera.position.set(this.zoom, this.center.y, this.center.x);
+      camera.position.set(-(this.zoom), this.center.y, this.center.x);
 
       camera.lookAt(new THREE.Vector3(0, this.center.y, this.center.x));
     }
