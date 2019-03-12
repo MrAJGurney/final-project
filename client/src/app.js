@@ -15,15 +15,15 @@ function app() {
   /* = = = = = = = = OPTIONS = = = = = = = = */
   /* = = = = = = = = = = = = = = = = = = = = */
 
-  const modelType = 'FRACTAL_BINARY_TREE';
+  // const modelType = 'FRACTAL_BINARY_TREE';
   // const modelType = 'FRACTAL_PLANT';
-  // const modelType = 'DRAGON_CURVE';
+  const modelType = 'DRAGON_CURVE';
 
-  const generations = 0;
+  const generations = 10;
 
-  const rotationEnabled = false
+  const rotationEnabled = true
 
-  const tutorialMode = true;
+  const tutorialMode = false;
 
   const displayCode = true;
 
