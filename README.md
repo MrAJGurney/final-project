@@ -3,9 +3,8 @@
 ## Running
 
 -   In the root of the repository run `npm install`
--   In the root of the repository run `npm start`
--   In the root of the repository run `(cd client && npm install)`
--   In the root of the repository run `(cd client && npm start)`
+-   In the root of the repository run `npm run package`
+-   In the root of the repository run `npm run serve`
 -   Navigate to <http://localhost:3000/>
 
 ## Altering parameters
