@@ -4,7 +4,6 @@ import LindenmayerSystem from './l_system';
 import LSystemPlayground from './l-system-playground';
 
 const MODELS = require('../models/models');
-const THREE = require('../js/three');
 
 /* = = = = = = = = = = = = = = = = = = = = */
 /* = = = = = = = = OPTIONS = = = = = = = = */

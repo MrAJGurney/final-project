@@ -1,9 +1,9 @@
-const THREE = require('../js/three');
+import { WebGLRenderer, Scene, PerspectiveCamera, Vector3 } from '../js/three.module';
 
 class Canvas {
   constructor(canvas) {
-    this.renderer = new THREE.WebGLRenderer();
-    this.scene = new THREE.Scene();
+    this.renderer = new WebGLRenderer();
+    this.scene = new Scene();
 
     this.camera = null;
     this.CreateCamera();
@@ -33,12 +33,12 @@ class Canvas {
     let nearClippingPlane = 0.1;
     let farClippingPlane = 2000;
 
-    const camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, nearClippingPlane, farClippingPlane);
+    const camera = new PerspectiveCamera(fieldOfView, aspectRatio, nearClippingPlane, farClippingPlane);
 
     if (this.center !== undefined && this.zoom !== undefined) {
       camera.position.set(-(this.zoom), this.center.y, this.center.x);
 
-      camera.lookAt(new THREE.Vector3(0, this.center.y, this.center.x));
+      camera.lookAt(new Vector3(0, this.center.y, this.center.x));
     }
 
     this.camera = camera;
@@ -57,10 +57,10 @@ class Canvas {
       if (this.center !== null && this.center !== undefined) {
         if (this.rotate) {
 
-          const axis = new THREE.Vector3(0, 1, 0);
+          const axis = new Vector3(0, 1, 0);
           const angle = Math.PI / 512;
           this.camera.position.applyAxisAngle(axis, angle);
-          this.camera.lookAt(new THREE.Vector3(0, this.center.y, this.center.x));
+          this.camera.lookAt(new Vector3(0, this.center.y, this.center.x));
         }
       }
 

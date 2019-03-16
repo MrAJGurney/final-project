@@ -1,5 +1,6 @@
+import {Vector3} from '../js/three.module';
+
 const MODELS = require('../models/models');
-const THREE = require('../js/three');
 
 class LSystemPlayground {
   constructor(collaborators, params, canvasElement) {
@@ -58,8 +59,8 @@ class LSystemPlayground {
     renderShape.ProcessCode()
 
     renderShape.lines.forEach((line) => {
-      let lineStart = new THREE.Vector3(0, line.start.x, line.start.y);
-      let lineEnd = new THREE.Vector3(0, line.end.x, line.end.y);
+      let lineStart = new Vector3(0, line.start.x, line.start.y);
+      let lineEnd = new Vector3(0, line.end.x, line.end.y);
       let node = line.node;
       canvas.AddShape(this.collaborators.Shape.line(lineStart, lineEnd, node, this.params.tutorialMode));
     });

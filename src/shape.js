@@ -1,12 +1,12 @@
-const THREE = require('../js/three');
+import {MeshBasicMaterial, BoxGeometry, Mesh, LineBasicMaterial, Geometry, Line} from '../js/three.module';
 
 class Shape {
 
   static cube() {
-    var material = new THREE.MeshBasicMaterial();
+    var material = new MeshBasicMaterial();
     material.color.setHSL(0.5, 1, 0.5);
-    var geometry = new THREE.BoxGeometry(1, 1, 1);
-    var cube = new THREE.Mesh(geometry, material);
+    var geometry = new BoxGeometry(1, 1, 1);
+    var cube = new Mesh(geometry, material);
     cube.position.set(0, -0.5, 0);
     return {
       shape: cube,
@@ -18,13 +18,13 @@ class Shape {
   }
 
   static line(start, end, node, tutorialMode) {
-    var material = new THREE.LineBasicMaterial();
+    var material = new LineBasicMaterial();
     material.color.setHSL((node % 500) / 500, 1, 0.6);
 
-    var geometry = new THREE.Geometry();
+    var geometry = new Geometry();
     geometry.vertices.push(start);
     geometry.vertices.push(end);
-    var line = new THREE.Line(geometry, material);
+    var line = new Line(geometry, material);
 
     line.visible = !tutorialMode;
     return {
