@@ -1,7 +1,7 @@
-import Canvas from './app/l_system_rendering/canvas';
-import Shape from './app/l_system_rendering/shape';
+import LSystemPlayground from './app/l_system_rendering/l-system-playground';
+import Canvas from './app/l_system_rendering/three_js_renderer/canvas';
+import Shape from './app/l_system_rendering/three_js_renderer/shape';
 import LindenmayerSystem from './app/l_system_parsing/l_system';
-import LSystemPlayground from './app/l_system_parsing/l-system-playground';
 import CONFIG from './config';
 
 const collaborators = {
