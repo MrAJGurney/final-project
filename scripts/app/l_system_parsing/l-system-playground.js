@@ -1,4 +1,4 @@
-import {Vector3} from '../js/three.module';
+import {Vector3} from '../../libs/three.module';
 
 class LSystemPlayground {
   constructor(collaborators, params, canvasElement) {

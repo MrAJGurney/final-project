@@ -3,10 +3,11 @@ var app = express();
 var path = require('path')
 
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname + '/build/index.html'));
+  res.sendFile(path.join(__dirname + '/index.html'));
 });
 
 app.use(express.static('build'));
+app.use(express.static('styles'));
 
 
 var server = app.listen(3000, function () {

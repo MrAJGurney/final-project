@@ -1,4 +1,4 @@
-import {MeshBasicMaterial, BoxGeometry, Mesh, LineBasicMaterial, Geometry, Line} from '../js/three.module';
+import {MeshBasicMaterial, BoxGeometry, Mesh, LineBasicMaterial, Geometry, Line} from '../../libs/three.module';
 
 class Shape {
 

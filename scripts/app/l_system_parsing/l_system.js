@@ -1,5 +1,3 @@
-// import LindenmayerSystemNode from './l_system_node';
-
 class LindenmayerSystem {
   constructor(system) {
     this.system = {

@@ -1,4 +1,4 @@
-import { WebGLRenderer, Scene, PerspectiveCamera, Vector3 } from '../js/three.module';
+import { WebGLRenderer, Scene, PerspectiveCamera, Vector3 } from '../../libs/three.module';
 
 class Canvas {
   constructor(canvas) {
