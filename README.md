@@ -9,4 +9,4 @@
 
 ## Altering parameters
 
-In `client\src\app.js` the following values can be changes to alter the L system: `modelType`, `generations`, `rotationEnabled`, `tutorialMode`, and `displayCode`
+In `src\config.js` the following values can be changes to alter the L system: `model`, `generations`, `rotationEnabled`, `tutorialMode`, and `displayCode`
