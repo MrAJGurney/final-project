@@ -1,16 +1,15 @@
 import {Vector3} from '../js/three.module';
-import MODELS from '../models/models';
 
 class LSystemPlayground {
   constructor(collaborators, params, canvasElement) {
     const {
-      modelType,
+      model,
       generations,
       rotationEnabled,
       tutorialMode,
       displayCode
     } = params;
-    this._throwIfAbsent(modelType, "params");
+    this._throwIfAbsent(model, "params");
     this._throwIfAbsent(generations, "params");
     this._throwIfAbsent(rotationEnabled, "params");
     this._throwIfAbsent(tutorialMode, "params");
@@ -50,7 +49,7 @@ class LSystemPlayground {
     const cube = this.collaborators.Shape.cube();
     canvas.AddShape(cube);
 
-    const renderShape = new this.collaborators.LindenmayerSystem(MODELS[this.params.modelType]);
+    const renderShape = new this.collaborators.LindenmayerSystem(this.params.model);
 
     [...Array(this.params.generations)].forEach(() => {
       renderShape.GenerateCode()
@@ -106,7 +105,7 @@ class LSystemPlayground {
       console.log('');
       console.log('');
     }
-    console.log("Model:", this.params.modelType);
+    console.log("Model:", this.params.model);
     console.log("Gens:", this.params.generations);
     console.log("Rotation:", this.params.rotationEnabled);
     console.log("Step-through:", this.params.tutorialMode);
