@@ -1,6 +1,5 @@
 import {Vector3} from '../js/three.module';
-
-const MODELS = require('../models/models');
+import MODELS from '../models/models';
 
 class LSystemPlayground {
   constructor(collaborators, params, canvasElement) {

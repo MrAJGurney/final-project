@@ -69,4 +69,4 @@ const FRACTAL_BINARY_TREE = {
   }
 }
 
-module.exports = FRACTAL_BINARY_TREE;
+export default FRACTAL_BINARY_TREE;

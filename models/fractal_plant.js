@@ -92,4 +92,4 @@ const FRACTAL_PLANT = {
   }
 }
 
-module.exports = FRACTAL_PLANT;
+export default FRACTAL_PLANT;

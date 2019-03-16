@@ -3,8 +3,6 @@ import Shape from './shape';
 import LindenmayerSystem from './l_system';
 import LSystemPlayground from './l-system-playground';
 
-const MODELS = require('../models/models');
-
 /* = = = = = = = = = = = = = = = = = = = = */
 /* = = = = = = = = OPTIONS = = = = = = = = */
 /* = = = = = = = = = = = = = = = = = = = = */

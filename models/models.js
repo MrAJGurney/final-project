@@ -1,6 +1,6 @@
-const FRACTAL_BINARY_TREE = require('./fractal_binary_tree');
-const FRACTAL_PLANT = require('./fractal_plant');
-const DRAGON_CURVE = require('./dragon_curve');
+import FRACTAL_BINARY_TREE from './fractal_binary_tree';
+import FRACTAL_PLANT from './fractal_plant';
+import DRAGON_CURVE from './dragon_curve';
 
 const MODELS = {
   FRACTAL_BINARY_TREE: FRACTAL_BINARY_TREE,
@@ -8,4 +8,4 @@ const MODELS = {
   DRAGON_CURVE: DRAGON_CURVE
 }
 
-module.exports = MODELS;
+export default MODELS;

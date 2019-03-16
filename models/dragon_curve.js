@@ -70,4 +70,4 @@ const DRAGON_CURVE = {
   }
 }
 
-module.exports = DRAGON_CURVE;
+export default DRAGON_CURVE;
