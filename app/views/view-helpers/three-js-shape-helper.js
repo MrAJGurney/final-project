@@ -1,6 +1,6 @@
-import {MeshBasicMaterial, BoxGeometry, Mesh, LineBasicMaterial, Geometry, Line} from '../../../libs/three.module';
+import {MeshBasicMaterial, BoxGeometry, Mesh, LineBasicMaterial, Geometry, Line} from '../../libs/three.module';
 
-class Shape {
+class ThreeJsShapeHelper {
 
   static cube() {
     var material = new MeshBasicMaterial();
@@ -38,4 +38,4 @@ class Shape {
 
 }
 
-export default Shape;
+export default ThreeJsShapeHelper;

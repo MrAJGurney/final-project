@@ -1,6 +1,6 @@
-import FRACTAL_BINARY_TREE from './fractal_binary_tree';
-import FRACTAL_PLANT from './fractal_plant';
-import DRAGON_CURVE from './dragon_curve';
+import FRACTAL_BINARY_TREE from './fractal-binary-tree';
+import FRACTAL_PLANT from './fractal-plant';
+import DRAGON_CURVE from './dragon-curve';
 
 const MODELS = {
   FRACTAL_BINARY_TREE: FRACTAL_BINARY_TREE,

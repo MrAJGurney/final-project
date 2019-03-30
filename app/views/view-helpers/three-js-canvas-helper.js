@@ -1,6 +1,6 @@
-import { WebGLRenderer, Scene, PerspectiveCamera, Vector3 } from '../../../libs/three.module';
+import { WebGLRenderer, Scene, PerspectiveCamera, Vector3 } from '../../libs/three.module';
 
-class Canvas {
+class ThreeJsCanvasHelper {
   constructor(canvas) {
     this.renderer = new WebGLRenderer();
     this.scene = new Scene();
@@ -76,4 +76,4 @@ class Canvas {
 
 }
 
-export default Canvas;
+export default ThreeJsCanvasHelper;

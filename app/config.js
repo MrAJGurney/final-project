@@ -1,4 +1,4 @@
-import MODELS from './app/example_l_systems/models';
+import MODELS from './resources/models';
 
 const CONFIG = {
   model: MODELS.DRAGON_CURVE,

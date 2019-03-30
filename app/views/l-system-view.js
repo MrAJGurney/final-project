@@ -1,9 +1,9 @@
-import Canvas from './three_js_renderer/canvas';
-import Shape from './three_js_renderer/shape';
+import ThreeJsCanvasHelper from './view-helpers/three-js-canvas-helper';
+import ThreeJsShapeHelper from './view-helpers/three-js-shape-helper';
 
-import {Vector3} from '../../libs/three.module';
+import {Vector3} from '../libs/three.module';
 
-class LSystemPlayground {
+class LSystemView {
   constructor(canvasElement) {
     this._throwIfAbsent(canvasElement);
     this.canvasElement = canvasElement;
@@ -36,16 +36,16 @@ class LSystemPlayground {
 
   run(renderShape) {
     const { canvasElement } = this;
-    const canvas = new Canvas(canvasElement);
+    const canvas = new ThreeJsCanvasHelper(canvasElement);
 
-    const cube = Shape.cube();
+    const cube = ThreeJsShapeHelper.cube();
     canvas.AddShape(cube);
 
     renderShape.lines.forEach((line) => {
       let lineStart = new Vector3(0, line.start.x, line.start.y);
       let lineEnd = new Vector3(0, line.end.x, line.end.y);
       let node = line.node;
-      canvas.AddShape(Shape.line(lineStart, lineEnd, node, this.params.tutorialMode));
+      canvas.AddShape(ThreeJsShapeHelper.line(lineStart, lineEnd, node, this.params.tutorialMode));
     });
 
     canvas.tutorialMode = this.params.tutorialMode;
@@ -100,4 +100,4 @@ class LSystemPlayground {
   }
 }
 
-export default LSystemPlayground;
+export default LSystemView;

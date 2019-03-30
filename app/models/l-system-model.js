@@ -1,4 +1,4 @@
-class LindenmayerSystem {
+class LSystemModel {
   constructor(system) {
     this.system = {
       constants: system.constants,
@@ -39,4 +39,4 @@ class LindenmayerSystem {
 
 }
 
-export default LindenmayerSystem;
+export default LSystemModel;
