@@ -1,33 +1,26 @@
+import Canvas from './three_js_renderer/canvas';
+import Shape from './three_js_renderer/shape';
+
 import {Vector3} from '../../libs/three.module';
 
 class LSystemPlayground {
-  constructor(collaborators, params, canvasElement) {
+  constructor(canvasElement) {
+    this._throwIfAbsent(canvasElement);
+    this.canvasElement = canvasElement;
+
+    this.configure = this.configure.bind(this);
+  }
+
+  configure(params) {
     const {
-      model,
-      generations,
       rotationEnabled,
       tutorialMode,
       displayCode
     } = params;
-    this._throwIfAbsent(model, "params");
-    this._throwIfAbsent(generations, "params");
     this._throwIfAbsent(rotationEnabled, "params");
     this._throwIfAbsent(tutorialMode, "params");
     this._throwIfAbsent(displayCode, "params");
     this.params = params;
-
-    const {
-      Canvas,
-      Shape,
-      LindenmayerSystem
-    } = collaborators;
-    this._throwIfAbsent(Canvas, "collaborators");
-    this._throwIfAbsent(Shape, "collaborators");
-    this._throwIfAbsent(LindenmayerSystem, "collaborators");
-    this.collaborators = collaborators;
-
-    this._throwIfAbsent(canvasElement);
-    this.canvasElement = canvasElement;
   }
 
   _throwIfAbsent(parameter, group) {
@@ -41,26 +34,18 @@ class LSystemPlayground {
     }
   }
 
-
-  run() {
+  run(renderShape) {
     const { canvasElement } = this;
-    const canvas = new this.collaborators.Canvas(canvasElement);
+    const canvas = new Canvas(canvasElement);
 
-    const cube = this.collaborators.Shape.cube();
+    const cube = Shape.cube();
     canvas.AddShape(cube);
-
-    const renderShape = new this.collaborators.LindenmayerSystem(this.params.model);
-
-    [...Array(this.params.generations)].forEach(() => {
-      renderShape.GenerateCode()
-    });
-    renderShape.ProcessCode()
 
     renderShape.lines.forEach((line) => {
       let lineStart = new Vector3(0, line.start.x, line.start.y);
       let lineEnd = new Vector3(0, line.end.x, line.end.y);
       let node = line.node;
-      canvas.AddShape(this.collaborators.Shape.line(lineStart, lineEnd, node, this.params.tutorialMode));
+      canvas.AddShape(Shape.line(lineStart, lineEnd, node, this.params.tutorialMode));
     });
 
     canvas.tutorialMode = this.params.tutorialMode;
