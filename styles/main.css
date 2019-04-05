@@ -1,11 +1,11 @@
-body {
-  margin: 0;
-}
-
 #control-panel {
   position: absolute;
 }
 
 #visualiser {
   background-color: black;
+}
+
+#visualiser canvas {
+  display: block;
 }
