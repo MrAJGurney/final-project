@@ -3,19 +3,19 @@ class ControlPanelView {
     this.lSystemSelector = lSystemSelector;
   }
 
-  populateSelectElement(modelNames) {
+  populateSelectElement(lSystems) {
     const { lSystemSelector } = this;
 
-    modelNames.forEach((modelName) => {
-      const option = this._createOptionElement(modelName);
+    Object.keys(lSystems).forEach((lSystemKey) => {
+      const option = this._createOptionElement(lSystemKey, lSystems[lSystemKey]);
       lSystemSelector.appendChild(option);
     });
   }
 
-  _createOptionElement(modelName) {
+  _createOptionElement(lSystemKey, lSystem) {
     const option = document.createElement("option");
-    option.value = modelName;
-    option.text = modelName;
+    option.value = lSystemKey;
+    option.text = lSystem.modelName;
     return option;
   }
 

@@ -1,10 +1,10 @@
 class ControlPanelModel {
-  constructor(modelNames) {
-    this.modelNames = modelNames;
+  constructor(lSystemConfigs) {
+    this.lSystemConfigs = lSystemConfigs;
   }
 
-  getModelNames() {
-    return Array.from(this.modelNames);
+  getLSystemConfigs() {
+    return this.lSystemConfigs;
   }
 }
 

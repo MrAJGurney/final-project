@@ -14,8 +14,8 @@ class ControlPanelController {
   _configureSelectElement() {
     const { controlPanelModel, controlPanelView } = this;
 
-    const modelNames = controlPanelModel.getModelNames();
-    controlPanelView.populateSelectElement(modelNames);
+    const lSystems = controlPanelModel.getLSystemConfigs();
+    controlPanelView.populateSelectElement(lSystems);
     controlPanelView.addListenerToSelectElement(this._publishOptionSelected)
   }
 
@@ -23,7 +23,7 @@ class ControlPanelController {
     const { controlPanelView, eventBus } = this;
 
     const selectedOption = controlPanelView.getSelectedOption();
-    eventBus.publish(ON_CONFIG_SELECTED, {selectedOption: selectedOption})
+    eventBus.publish(ON_CONFIG_SELECTED, {lSystemKey: selectedOption})
   }
 }
 

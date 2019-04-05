@@ -7,9 +7,9 @@ import LSystemView from './views/l-system-view';
 import LSystemController from './controllers/l-system-controller';
 
 import EventBus from './event-bus';
-import CONFIG from './config';
-import MODELS from './resources/models.js'
+import L_SYSTEM_CONFIGS from './l-system-configs';
 
+const DEFAULT_CONFIG = L_SYSTEM_CONFIGS.DRAGON_CURVE;
 const ON_CONFIG_SELECTED = 'on-config-selected';
 
 window.onload = function() {
@@ -19,8 +19,7 @@ window.onload = function() {
 }
 
 function _initializeControlPanel(eventBus) {
-  const modelNames = Object.keys(MODELS);
-  const controlPanelModel = new ControlPanelModel(modelNames);
+  const controlPanelModel = new ControlPanelModel(L_SYSTEM_CONFIGS);
 
   const lSystemSelector = document.querySelector('#l-system-selector');
   const controlPanelView = new ControlPanelView(lSystemSelector);
@@ -29,18 +28,18 @@ function _initializeControlPanel(eventBus) {
 }
 
 function _initializeLSystemComponent(eventBus) {
-  const { model } = CONFIG;
+  const { model } = DEFAULT_CONFIG;
   const lSystemModel = new LSystemModel(model);
 
   const canvas = document.querySelector('#visualiser');
   const lSystemView = new LSystemView(canvas);
 
   const lSystemController = new LSystemController(lSystemModel, lSystemView);
-  lSystemController.configure(CONFIG);
+  lSystemController.configure(DEFAULT_CONFIG);
   lSystemController.run();
 
   eventBus.subscribe(ON_CONFIG_SELECTED, (data) => {
     // TODO: Handle the selection appropriatly
-    window.alert("New L-system selected: " + data.selectedOption);
+    window.alert("New L-system selected: " + data.lSystemKey);
   });
 }
