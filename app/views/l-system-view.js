@@ -15,11 +15,9 @@ class LSystemView {
     const {
       rotationEnabled,
       tutorialMode,
-      displayCode
     } = params;
     this._throwIfAbsent(rotationEnabled, "params");
     this._throwIfAbsent(tutorialMode, "params");
-    this._throwIfAbsent(displayCode, "params");
     this.params = params;
   }
 
@@ -61,8 +59,6 @@ class LSystemView {
           canvas.shapes[index].shape.visible = true;
           index++;
           setTimeout(displayShapes, delay);
-        } else {
-          console.log("Displayed all", index, "segments");
         }
       };
       document.onkeydown = () => {
@@ -81,22 +77,6 @@ class LSystemView {
     canvas.zoom = Math.max(renderShape.dimensions.maxNorth - renderShape.dimensions.maxSouth, renderShape.dimensions.maxEast - renderShape.dimensions.maxWest) * (5 / 7);
 
     canvas.CreateCamera();
-
-    if (this.params.displayCode) {
-      console.log('|=CODE START=|');
-      console.log(renderShape.code.join(''));
-      console.log('|=CODE END=|');
-      console.log('');
-      console.log('');
-      console.log('');
-    }
-    console.log("Model:", this.params.model);
-    console.log("Gens:", this.params.generations);
-    console.log("Rotation:", this.params.rotationEnabled);
-    console.log("Step-through:", this.params.tutorialMode);
-    console.log("Delay:", delay);
-    console.log("No. of chars", renderShape.code.length);
-    console.log("No. of lines:", renderShape.lines.length);
   }
 }
 

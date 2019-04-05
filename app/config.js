@@ -4,8 +4,7 @@ const CONFIG = {
   model: MODELS.DRAGON_CURVE,
   generations: 10,
   rotationEnabled: true,
-  tutorialMode: false,
-  displayCode: true
+  tutorialMode: false
 }
 
 export default CONFIG;

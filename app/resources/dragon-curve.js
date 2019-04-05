@@ -61,8 +61,6 @@ const DRAGON_CURVE = {
         case 'Y':
           // Do nothing
           break;
-        default:
-          console.log('NO RULE ASSISGNED TO CHARACTER:', character);
       }
     }
 

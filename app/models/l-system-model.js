@@ -24,8 +24,6 @@ class LSystemModel {
         return symbol;
       } else if (this.system.variables.includes(symbol)) {
         return this.system.rules[symbol];
-      } else {
-        console.log('UNASSIGNED SYMBOL:', symbol);
       }
     });
     this.code = [].concat.apply([], temporaryCode);

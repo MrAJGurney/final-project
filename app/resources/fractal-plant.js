@@ -83,8 +83,6 @@ const FRACTAL_PLANT = {
           angle = stackReturn.angle;
           node = stackReturn.node;
           break;
-        default:
-          console.log('NO RULE ASSISGNED TO CHARACTER:', character);
       }
     }
 

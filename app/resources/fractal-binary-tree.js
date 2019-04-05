@@ -60,8 +60,6 @@ const FRACTAL_BINARY_TREE = {
           angle += 45;
           node = stackReturn.node;
           break;
-        default:
-          console.log('NO RULE ASSISGNED TO CHARACTER:', character);
       }
     }
 
