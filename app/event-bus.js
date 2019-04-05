@@ -10,8 +10,8 @@ class EventBus {
   }
 
   subscribe(topic, listener) {
-    _initialiseTopicIfNew(topic);
-    _addListenerToTopic(topic, listener);
+    this._initialiseTopicIfNew(topic);
+    this._addListenerToTopic(topic, listener);
   }
 
   _initialiseTopicIfNew(topic) {
@@ -27,10 +27,10 @@ class EventBus {
   }
 
   publish(topic, data) {
-    if (!_hasListeners(topic)) {
+    if (!this._hasListeners(topic)) {
       return;
     }
-    _sendDataToListeners(topic, data);
+    this._sendDataToListeners(topic, data);
   }
 
   _hasListeners(topic) {
@@ -50,7 +50,7 @@ class EventBus {
     const { topics } = this;
     const listeners = topics[topic];
     listeners.forEach((listener) => {
-      if (typeof yourVariable === 'object') {
+      if (typeof data === 'object') {
         listener(data);
       } else {
         let emptyObject = {};
