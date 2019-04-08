@@ -1,5 +1,5 @@
 class LSystemModel {
-  constructor(system) {
+  configure(system) {
     this.system = {
       constants: system.constants,
       variables: system.variables,

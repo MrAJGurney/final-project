@@ -5,11 +5,20 @@ class LSystemController {
 
     this.lSystemModel = lSystemModel;
     this.lSystemView = lSystemView;
-
-    this.configure = this.configure.bind(this);
   }
 
-  configure(params) {
+  run(params) {
+    this._configure(params);
+
+    [...Array(this.params.generations)].forEach(() => {
+      this.lSystemModel.GenerateCode()
+    });
+    this.lSystemModel.ProcessCode()
+
+    this.lSystemView.run(this.lSystemModel, params);
+  }
+
+  _configure(params) {
     const {
       model,
       generations
@@ -18,7 +27,7 @@ class LSystemController {
     this._throwIfAbsent(generations, "params");
     this.params = params;
 
-    this.lSystemView.configure(params);
+    this.lSystemModel.configure(model);
   }
 
   _throwIfAbsent(parameter, group) {
@@ -30,15 +39,6 @@ class LSystemController {
         throw Error("Missing: " + parameter);
       }
     }
-  }
-
-  run() {
-    [...Array(this.params.generations)].forEach(() => {
-      this.lSystemModel.GenerateCode()
-    });
-    this.lSystemModel.ProcessCode()
-
-    this.lSystemView.run(this.lSystemModel);
   }
 }
 

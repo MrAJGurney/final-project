@@ -74,6 +74,12 @@ class ThreeJsCanvasHelper {
     this.scene.add(shape.shape);
   }
 
+  clearScene() {
+    while(this.scene.children.length > 0){
+      this.scene.remove(this.scene.children[0]);
+    }
+  }
+
 }
 
 export default ThreeJsCanvasHelper;

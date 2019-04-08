@@ -28,18 +28,17 @@ function _initializeControlPanel(eventBus) {
 }
 
 function _initializeLSystemComponent(eventBus) {
-  const { model } = DEFAULT_CONFIG;
-  const lSystemModel = new LSystemModel(model);
+  const lSystemModel = new LSystemModel();
 
   const canvas = document.querySelector('#visualiser');
   const lSystemView = new LSystemView(canvas);
 
   const lSystemController = new LSystemController(lSystemModel, lSystemView);
-  lSystemController.configure(DEFAULT_CONFIG);
-  lSystemController.run();
+  lSystemController.run(DEFAULT_CONFIG);
 
   eventBus.subscribe(ON_CONFIG_SELECTED, (data) => {
-    // TODO: Handle the selection appropriatly
-    window.alert("New L-system selected: " + data.lSystemKey);
+    const { lSystemKey } = data;
+    const config = L_SYSTEM_CONFIGS[lSystemKey];
+    lSystemController.run(config);
   });
 }

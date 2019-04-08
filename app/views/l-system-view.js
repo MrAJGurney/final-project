@@ -8,10 +8,57 @@ class LSystemView {
     this._throwIfAbsent(canvasElement);
     this.canvasElement = canvasElement;
 
-    this.configure = this.configure.bind(this);
+    this.canvas = new ThreeJsCanvasHelper(canvasElement);
   }
 
-  configure(params) {
+  run(lSystemModel, params) {
+    this._configure(params);
+    this.canvas.clearScene();
+
+    const cube = ThreeJsShapeHelper.cube();
+    this.canvas.AddShape(cube);
+
+    lSystemModel.lines.forEach((line) => {
+      let lineStart = new Vector3(0, line.start.x, line.start.y);
+      let lineEnd = new Vector3(0, line.end.x, line.end.y);
+      let node = line.node;
+      this.canvas.AddShape(ThreeJsShapeHelper.line(lineStart, lineEnd, node, this.params.tutorialMode));
+    });
+
+    this.canvas.tutorialMode = this.params.tutorialMode;
+    this.canvas.rotate = this.params.rotationEnabled;
+
+    const delay = Math.ceil(10000 / lSystemModel.lines.length);
+
+    if (this.params.tutorialMode) {
+      let buttonPressed = false;
+      let index = 1; // 0 is the box
+      const displayShapes = () => {
+        if (index < this.canvas.shapes.length) {
+          this.canvas.shapes[index].shape.visible = true;
+          index++;
+          setTimeout(displayShapes, delay);
+        }
+      };
+      document.onkeydown = () => {
+        if (!buttonPressed) {
+          buttonPressed = true;
+          displayShapes(1);
+        }
+      }
+    }
+
+    this.canvas.center = {
+      x: (lSystemModel.dimensions.maxNorth - lSystemModel.dimensions.maxSouth) / 2 + lSystemModel.dimensions.maxSouth,
+      y: (lSystemModel.dimensions.maxEast - lSystemModel.dimensions.maxWest) / 2 + lSystemModel.dimensions.maxWest
+    };
+
+    this.canvas.zoom = Math.max(lSystemModel.dimensions.maxNorth - lSystemModel.dimensions.maxSouth, lSystemModel.dimensions.maxEast - lSystemModel.dimensions.maxWest) * (5 / 7);
+
+    this.canvas.CreateCamera();
+  }
+
+  _configure(params) {
     const {
       rotationEnabled,
       tutorialMode,
@@ -30,53 +77,6 @@ class LSystemView {
         throw Error("Missing: " + parameter);
       }
     }
-  }
-
-  run(renderShape) {
-    const { canvasElement } = this;
-    const canvas = new ThreeJsCanvasHelper(canvasElement);
-
-    const cube = ThreeJsShapeHelper.cube();
-    canvas.AddShape(cube);
-
-    renderShape.lines.forEach((line) => {
-      let lineStart = new Vector3(0, line.start.x, line.start.y);
-      let lineEnd = new Vector3(0, line.end.x, line.end.y);
-      let node = line.node;
-      canvas.AddShape(ThreeJsShapeHelper.line(lineStart, lineEnd, node, this.params.tutorialMode));
-    });
-
-    canvas.tutorialMode = this.params.tutorialMode;
-    canvas.rotate = this.params.rotationEnabled;
-
-    const delay = Math.ceil(10000 / renderShape.lines.length);
-
-    if (this.params.tutorialMode) {
-      let buttonPressed = false;
-      let index = 1; // 0 is the box
-      const displayShapes = () => {
-        if (index < canvas.shapes.length) {
-          canvas.shapes[index].shape.visible = true;
-          index++;
-          setTimeout(displayShapes, delay);
-        }
-      };
-      document.onkeydown = () => {
-        if (!buttonPressed) {
-          buttonPressed = true;
-          displayShapes(1);
-        }
-      }
-    }
-
-    canvas.center = {
-      x: (renderShape.dimensions.maxNorth - renderShape.dimensions.maxSouth) / 2 + renderShape.dimensions.maxSouth,
-      y: (renderShape.dimensions.maxEast - renderShape.dimensions.maxWest) / 2 + renderShape.dimensions.maxWest
-    };
-
-    canvas.zoom = Math.max(renderShape.dimensions.maxNorth - renderShape.dimensions.maxSouth, renderShape.dimensions.maxEast - renderShape.dimensions.maxWest) * (5 / 7);
-
-    canvas.CreateCamera();
   }
 }
 
