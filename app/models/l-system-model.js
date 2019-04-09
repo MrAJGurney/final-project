@@ -34,7 +34,7 @@ class LSystemModel {
         return this.system.rules[symbol];
       }
     });
-    this.code = [].concat.apply([], temporaryCode);
+    this.code = [].concat(...temporaryCode);
   }
 
   processCode() {
