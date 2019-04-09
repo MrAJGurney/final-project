@@ -13,19 +13,19 @@ class LSystemModel {
       variables: system.variables,
       axiom: system.axiom,
       rules: system.rules,
-      processing: system.processing
-    }
+      processing: system.processing,
+    };
     this.code = this.system.axiom;
     this.lines = null;
     this.dimensions = {
       maxNorth: 0,
       maxEast: 0,
       maxSouth: 0,
-      maxWest: 0
+      maxWest: 0,
     };
   }
 
-  GenerateCode() {
+  generateCode() {
     let temporaryCode = null;
     temporaryCode = this.code.map((symbol) => {
       if (this.system.constants.includes(symbol)) {
@@ -37,12 +37,11 @@ class LSystemModel {
     this.code = [].concat.apply([], temporaryCode);
   }
 
-  ProcessCode() {
+  processCode() {
     const generatedObject = this.system.processing(this.code);
     this.lines = generatedObject.lines;
     this.dimensions = generatedObject.dimensions;
   }
-
 }
 
 export default LSystemModel;

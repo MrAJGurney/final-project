@@ -4,7 +4,7 @@ const FRACTAL_BINARY_TREE = {
   axiom: (['0']),
   rules: {
     '1': (['1', '1']),
-    '0': (['1', '[', '0', ']', '0'])
+    '0': (['1', '[', '0', ']', '0']),
   },
   processing: (code) => {
     const lines = [];
@@ -12,32 +12,34 @@ const FRACTAL_BINARY_TREE = {
 
     let startCoord = {
       x: 0,
-      y: 0
+      y: 0,
     };
     let angle = 0;
     let node = 0;
-    let dimensions = {
+    const dimensions = {
       maxNorth: 0,
       maxEast: 0,
       maxSouth: 0,
-      maxWest: 0
+      maxWest: 0,
     };
 
-    for (let character of code) {
+    for (const character of code) {
       switch (character) {
         case '0':
         case '1':
-          let direction = {
+          const direction = {
             x: 1,
-            y: 0
+            y: 0,
           };
-          let newDirection = {
-            x: (direction.x * Math.cos(angle * Math.PI / 180)) - (direction.y * Math.sin(angle * Math.PI / 180)),
-            y: (direction.x * Math.sin(angle * Math.PI / 180)) + (direction.y * Math.cos(angle * Math.PI / 180))
+          const newDirection = {
+            x: (direction.x * Math.cos(angle * Math.PI / 180)) -
+              (direction.y * Math.sin(angle * Math.PI / 180)),
+            y: (direction.x * Math.sin(angle * Math.PI / 180)) +
+              (direction.y * Math.cos(angle * Math.PI / 180)),
           };
-          let endCoord = {
+          const endCoord = {
             x: startCoord.x + newDirection.x,
-            y: startCoord.y + newDirection.y
+            y: startCoord.y + newDirection.y,
           };
 
           dimensions.maxNorth = Math.max(dimensions.maxNorth, endCoord.y);
@@ -45,16 +47,24 @@ const FRACTAL_BINARY_TREE = {
           dimensions.maxSouth = Math.min(dimensions.maxSouth, endCoord.y);
           dimensions.maxWest = Math.min(dimensions.maxWest, endCoord.x);
 
-          lines.push({start: startCoord, end: endCoord, node: node});
+          lines.push({
+            start: startCoord,
+            end: endCoord,
+            node: node,
+          });
           startCoord = endCoord;
           node++;
           break;
         case '[':
-          stack.push({startCoord: startCoord, angle: angle, node: node});
+          stack.push({
+            startCoord: startCoord,
+            angle: angle,
+            node: node,
+          });
           angle -= 45;
           break;
         case ']':
-          let stackReturn = stack.pop();
+          const stackReturn = stack.pop();
           startCoord = stackReturn.startCoord;
           angle = stackReturn.angle;
           angle += 45;
@@ -63,8 +73,11 @@ const FRACTAL_BINARY_TREE = {
       }
     }
 
-    return {dimensions: dimensions, lines: lines};
-  }
-}
+    return {
+      dimensions: dimensions,
+      lines: lines,
+    };
+  },
+};
 
 export default FRACTAL_BINARY_TREE;

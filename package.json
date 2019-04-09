@@ -5,7 +5,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "package": "webpack -w",
-    "serve": "node server.js"
+    "serve": "node server.js",
+    "lint": "node_modules/.bin/eslint server.js app/**/*.js",
+    "lint-fix": "node_modules/.bin/eslint --fix server.js app/**/*.js"
   },
   "dependencies": {
     "express": "^4.13.4"
@@ -14,6 +16,8 @@
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",
     "babel-preset-es2015": "^6.18.0",
+    "eslint": "^5.16.0",
+    "eslint-config-google": "^0.12.0",
     "webpack": "^2.2.0"
   },
   "description": ""

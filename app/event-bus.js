@@ -14,14 +14,18 @@ class EventBus {
   }
 
   _validateTopic(topic) {
-    const { topics } = this;
-    if(!topics.hasOwnProperty(topic)) {
-      throw new Error("Invalid topic: " + topic);
+    const {
+      topics,
+    } = this;
+    if (!topics.hasOwnProperty(topic)) {
+      throw new Error('Invalid topic: ' + topic);
     }
   }
 
   _addListenerToTopic(topic, listener) {
-    const { topics } = this;
+    const {
+      topics,
+    } = this;
     topics[topic].push(listener);
   }
 
@@ -33,12 +37,14 @@ class EventBus {
   }
 
   _hasListeners(topic) {
-    const { topics } = this;
-    let topicExists = topics.hasOwnProperty(topic);
+    const {
+      topics,
+    } = this;
+    const topicExists = topics.hasOwnProperty(topic);
     if (!topicExists) {
       return false;
     }
-    let topicHasListeners = topics[topic].length > 0;
+    const topicHasListeners = topics[topic].length > 0;
     if (!topicHasListeners) {
       return false;
     }
@@ -46,13 +52,15 @@ class EventBus {
   }
 
   _sendDataToListeners(topic, data) {
-    const { topics } = this;
+    const {
+      topics,
+    } = this;
     const listeners = topics[topic];
     listeners.forEach((listener) => {
       if (typeof data === 'object') {
         listener(data);
       } else {
-        let emptyObject = {};
+        const emptyObject = {};
         listener(emptyObject);
       }
     });

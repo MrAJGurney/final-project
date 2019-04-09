@@ -16,11 +16,11 @@ window.onload = function() {
   _initializeLSystemComponent(eventBus);
 
   window.addEventListener('resize', _onWindowResize(eventBus), false);
-}
+};
 
 function _onWindowResize(eventBus) {
   return (() => {
-    eventBus.publish("ON_WINDOW_RESIZE");
+    eventBus.publish('ON_WINDOW_RESIZE');
   });
 }
 
@@ -30,7 +30,10 @@ function _initializeControlPanel(eventBus) {
   const lSystemSelector = document.querySelector('#l-system-selector');
   const controlPanelView = new ControlPanelView(lSystemSelector);
 
-  const controlPanelController = new ControlPanelController(controlPanelModel, controlPanelView, eventBus);
+  new ControlPanelController(
+      controlPanelModel,
+      controlPanelView,
+      eventBus);
 }
 
 function _initializeLSystemComponent(eventBus) {
@@ -39,5 +42,8 @@ function _initializeLSystemComponent(eventBus) {
   const canvas = document.querySelector('#visualiser');
   const lSystemView = new LSystemView(canvas);
 
-  const lSystemController = new LSystemController(lSystemModel, lSystemView, eventBus);
+  new LSystemController(
+      lSystemModel,
+      lSystemView,
+      eventBus);
 }
