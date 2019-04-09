@@ -1,10 +1,26 @@
 class LSystemController {
-  constructor(lSystemModel, lSystemView) {
+  constructor(lSystemModel, lSystemView, eventBus) {
     this._throwIfAbsent(lSystemModel);
     this._throwIfAbsent(lSystemView);
 
     this.lSystemModel = lSystemModel;
     this.lSystemView = lSystemView;
+    this.eventBus = eventBus;
+
+    eventBus.subscribe("ON_CONFIG_SELECTED", this._onConfigSelected.bind(this));
+    eventBus.subscribe("ON_WINDOW_RESIZE", this._onWindowResized.bind(this));
+  }
+
+  _onConfigSelected(data) {
+    const { lSystemKey } = data;
+    const lSystemConfigs = this.lSystemModel.getLSystemConfigs();
+    const config = lSystemConfigs[lSystemKey];
+    this.run(config);
+  }
+
+  _onWindowResized() {
+    const { lSystemView } = this;
+    lSystemView.resizeWindow();
   }
 
   run(params) {

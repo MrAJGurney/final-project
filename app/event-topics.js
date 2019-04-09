@@ -1,0 +1,6 @@
+const EVENT_TOPICS = [
+  "ON_CONFIG_SELECTED",
+  "ON_WINDOW_RESIZE"
+];
+
+export default EVENT_TOPICS;

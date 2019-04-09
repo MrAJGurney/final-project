@@ -1,5 +1,3 @@
-const ON_CONFIG_SELECTED = 'on-config-selected';
-
 class ControlPanelController {
   constructor(controlPanelModel, controlPanelView, eventBus) {
     this.controlPanelModel = controlPanelModel;
@@ -23,7 +21,7 @@ class ControlPanelController {
     const { controlPanelView, eventBus } = this;
 
     const selectedOption = controlPanelView.getSelectedOption();
-    eventBus.publish(ON_CONFIG_SELECTED, {lSystemKey: selectedOption})
+    eventBus.publish("ON_CONFIG_SELECTED", {lSystemKey: selectedOption});
   }
 }
 

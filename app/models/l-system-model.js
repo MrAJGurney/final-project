@@ -1,4 +1,12 @@
 class LSystemModel {
+  constructor(lSystemConfigs) {
+    this.lSystemConfigs = lSystemConfigs;
+  }
+
+  getLSystemConfigs() {
+    return this.lSystemConfigs;
+  }
+
   configure(system) {
     this.system = {
       constants: system.constants,

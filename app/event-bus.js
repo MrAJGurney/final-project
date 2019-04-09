@@ -1,23 +1,22 @@
 class EventBus {
-
-  constructor() {
+  constructor(eventTopics) {
     this.topics = {};
-  }
+    this.eventTopics = eventTopics;
 
-  getTopics() {
-    const { topics } = this;
-    return Object.keys(topics);
+    eventTopics.forEach((topic) => {
+      this.topics[topic] = [];
+    });
   }
 
   subscribe(topic, listener) {
-    this._initialiseTopicIfNew(topic);
+    this._validateTopic(topic);
     this._addListenerToTopic(topic, listener);
   }
 
-  _initialiseTopicIfNew(topic) {
+  _validateTopic(topic) {
     const { topics } = this;
-    if(!topics[topic]) {
-      topics[topic] = [];
+    if(!topics.hasOwnProperty(topic)) {
+      throw new Error("Invalid topic: " + topic);
     }
   }
 

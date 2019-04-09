@@ -1,7 +1,9 @@
-import MODELS from './resources/models';
+import FRACTAL_BINARY_TREE from './resources/fractal-binary-tree';
+import FRACTAL_PLANT from './resources/fractal-plant';
+import DRAGON_CURVE from './resources/dragon-curve';
 
 const FRACTAL_BINARY_TREE_CONFIG = {
-  model: MODELS.FRACTAL_BINARY_TREE,
+  model: FRACTAL_BINARY_TREE,
   modelName: "fractal binary tree",
   generations: 8,
   rotationEnabled: true,
@@ -9,7 +11,7 @@ const FRACTAL_BINARY_TREE_CONFIG = {
 };
 
 const FRACTAL_PLANT_CONFIG = {
-  model: MODELS.FRACTAL_PLANT,
+  model: FRACTAL_PLANT,
   modelName: "fractal plant",
   generations: 6,
   rotationEnabled: true,
@@ -17,7 +19,7 @@ const FRACTAL_PLANT_CONFIG = {
 };
 
 const DRAGON_CURVE_CONFIG = {
-  model: MODELS.DRAGON_CURVE,
+  model: DRAGON_CURVE,
   modelName: "dragon curve",
   generations: 10,
   rotationEnabled: true,

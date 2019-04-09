@@ -9,6 +9,12 @@ class LSystemView {
     this.canvasElement = canvasElement;
 
     this.canvas = new ThreeJsCanvasHelper(canvasElement);
+
+    this.resizeWindow = this.resizeWindow.bind(this);
+  }
+
+  resizeWindow() {
+    this.canvas.resizeWindow();
   }
 
   run(lSystemModel, params) {

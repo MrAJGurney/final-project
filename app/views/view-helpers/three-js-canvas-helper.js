@@ -22,6 +22,12 @@ class ThreeJsCanvasHelper {
     this.rotate = false;
   }
 
+  resizeWindow() {
+    this.camera.aspect = window.innerWidth / window.innerHeight;
+    this.camera.updateProjectionMatrix();
+    this.renderer.setSize( window.innerWidth, window.innerHeight );
+  }
+
   CreateCanvas(canvas) {
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.canvas.appendChild(this.renderer.domElement);
