@@ -1,6 +1,6 @@
-import FRACTAL_BINARY_TREE from './resources/fractal-binary-tree';
-import FRACTAL_PLANT from './resources/fractal-plant';
-import DRAGON_CURVE from './resources/dragon-curve';
+import FRACTAL_BINARY_TREE from './example-l-systems/fractal-binary-tree';
+import FRACTAL_PLANT from './example-l-systems/fractal-plant';
+import DRAGON_CURVE from './example-l-systems/dragon-curve';
 
 const FRACTAL_BINARY_TREE_CONFIG = {
   model: FRACTAL_BINARY_TREE,
@@ -26,10 +26,10 @@ const DRAGON_CURVE_CONFIG = {
   tutorialMode: false,
 };
 
-const L_SYSTEM_CONFIGS = {
+const CONFIG = {
   FRACTAL_BINARY_TREE: FRACTAL_BINARY_TREE_CONFIG,
   FRACTAL_PLANT: FRACTAL_PLANT_CONFIG,
   DRAGON_CURVE: DRAGON_CURVE_CONFIG,
 };
 
-export default L_SYSTEM_CONFIGS;
+export default CONFIG;

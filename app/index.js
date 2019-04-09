@@ -6,9 +6,9 @@ import LSystemModel from './models/l-system-model';
 import LSystemView from './views/l-system-view';
 import LSystemController from './controllers/l-system-controller';
 
-import EventBus from './event-bus';
-import EVENT_TOPICS from './event-topics';
-import L_SYSTEM_CONFIGS from './l-system-configs';
+import EventBus from './resources/event-bus/event-bus';
+import EVENT_TOPICS from './resources/event-bus/event-topics';
+import CONFIG from './resources/config';
 
 window.onload = function() {
   const eventBus = new EventBus(EVENT_TOPICS);
@@ -25,7 +25,7 @@ function _onWindowResize(eventBus) {
 }
 
 function _initializeControlPanel(eventBus) {
-  const controlPanelModel = new ControlPanelModel(L_SYSTEM_CONFIGS);
+  const controlPanelModel = new ControlPanelModel(CONFIG);
 
   const lSystemSelector = document.querySelector('#l-system-selector');
   const controlPanelView = new ControlPanelView(lSystemSelector);
@@ -37,7 +37,7 @@ function _initializeControlPanel(eventBus) {
 }
 
 function _initializeLSystemComponent(eventBus) {
-  const lSystemModel = new LSystemModel(L_SYSTEM_CONFIGS);
+  const lSystemModel = new LSystemModel(CONFIG);
 
   const canvas = document.querySelector('#visualiser');
   const lSystemView = new LSystemView(canvas);
