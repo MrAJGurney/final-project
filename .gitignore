@@ -1,2 +1,6 @@
 node_modules
 build
+coverage
+
+# As the .vscode directory is created by the IDE (Visual Studio Code) rather than the project, this ideally shouldn't be within the .gitignore.
+.vscode
